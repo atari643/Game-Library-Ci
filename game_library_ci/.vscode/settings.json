@@ -1,0 +1,4 @@
+{
+    "java.checkstyle.configuration": "/sun_checks.xml",
+    "java.configuration.updateBuildConfiguration": "interactive"
+}
