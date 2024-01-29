@@ -1,2 +1,2 @@
-target/*
+game_library_ci/target/*
 .vscode/*
