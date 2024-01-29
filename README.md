@@ -2,12 +2,12 @@
 
 TP en équipe de 3 étudiants
 
-L'objectif de cd TP est d'utiliser le `workflow`` **GitLab** avec des *Merge-Requests* (*MR)* et des *Issues*, ainsi que la mise en place d'une *Intégration Continue* (*CI*) dans **GitLab**.
+L'objectif de ce TP est d'utiliser le `workflow`` **GitLab** avec des *Merge-Requests* (*MR)* et des *Issues*, ainsi que la mise en place d'une *Intégration Continue* (*CI*) dans **GitLab**.
 
 Vous allez améliorer la structuration d'un code succint sur la gestion d'une *ludothèque*. Ce code est écrit en **Java/Maven** . 
-A chaque réalisation d'une tâche, une *MR* devra être envoyée dans le dépôt.
-La mise en place de votre *CI* devra produire une archive du code et la documentation du code après vous êtes assuré que le code passe les tests.
+A chaque réalisation d'une tâche (correspondant à un *issue*), une *MR* devra être envoyée dans le dépôt.
 
+La mise en place de votre *CI* devra produire une archive du code et la documentation du code après vous êtes assuré que le code passe les tests.
 
 Tout au long de ce TP, vous n'aurez pas besoin d'échanger entre vous 'oralement' (utiliser les sections `commentaires`  de **GitLab** pour échanger entre vous). 
 
@@ -16,8 +16,7 @@ Tout au long de ce TP, vous n'aurez pas besoin d'échanger entre vous 'oralement
 Constituer un groupe de 3 participants noté **P1**, **P2** et **P3**.
 
 
-
-**P1** fork ce dépôt (en mode `private` !) et donne les droits `maintainer` à P2 et P3.
+**P1** fork ce dépôt (en mode `private` !) et donne les droits `maintainer` à **P2** et **P3**.
 
 **P1** invite l'enseignant correcteur de son groupe en tant que `reporter`.
 
@@ -25,13 +24,14 @@ Constituer un groupe de 3 participants noté **P1**, **P2** et **P3**.
 **Note**
 Afin de pouvoir créer des *MR* à partir d'*Issues* gérées dans votre tableau de bord **GitLab**, on vous demande également de supprimer la relation avec le projet à l'origine du fork (voir /settings/general/advanced/ Remove fork relationship).
 
-**P2** et **P3** clonent le dépôt **GitLab** de P1.
+**P2** et **P3** clonent le dépôt **GitLab** de **P1**.
 
 **Warning**
 - Il est interdit de commiter dans la branche `main` directement !
 - Vous devez utiliser l'image Docker *tthor/test*.
+- les *MR* proposé par un member de l'équipe doivent être validé par un autre membre de l'équipe.
 
-Chaque membre de l'équipe d'occupe d'une fonctionnalité
+Chaque membre de l'équipe s'occupe d'une fonctionnalité.
 
 ## fonctionnalité Jeu
 Il s'agit de remplacer la dépendance de la classe `LibraryApp` avec la classe  `Game` par une dépendance à l'interface `IGame` :
