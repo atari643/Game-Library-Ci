@@ -31,6 +31,9 @@ public class LibraryApp {
     static final int CINQ = 5;
     /** */
     static final int SIX = 6;
+    /** */
+    static final int SEVEN = 7;
+
 
     LibraryApp() {
         gAccess = new HashMap<>();
@@ -40,10 +43,11 @@ public class LibraryApp {
         menuItems = new ArrayList<>();
         menuItems.add("Quit");
         menuItems.add("List all games in the library");
+        menuItems.add("List all members of the library");
+        menuItems.add("List all loans");
         menuItems.add("Add new  game");
         menuItems.add("Add new member");
         menuItems.add("Borrow  game");
-        menuItems.add("List all loans");
         menuItems.add("Return game");
     }
 
@@ -52,6 +56,9 @@ public class LibraryApp {
         if (g == null) {
             gAccess.put(name, new Game(name));
         }
+        else {
+            System.out.println("There is alrealdy a game having the name " + name + ".");
+        }
     }
 
     final void addMember(final String name) {
@@ -59,20 +66,35 @@ public class LibraryApp {
         if (m == null) {
             mAccess.put(name, new Member(name));
         }
+        else {
+            System.out.println("There is alrealdy a member having the name " + name + ".");
+        }
     }
 
     final void addBorrowGame(final String nameM, final String nameG) {
         Game g = gAccess.get(nameG);
         Member m = mAccess.get(nameM);
-        if ((g != null) && (m != null)) {
-            g.borrow(m);
+        if ((g == null) || (m == null)) {
+            return;
+        }
+        if (g.borrow(m)) {
+            System.out.println("The loan of the game "+ nameG + " by " + nameM + " is a success.");
+        } 
+        else {
+            System.out.println("The loan of the game "+ nameG + " by " + nameM + " fail.");
         }
     }
 
     final void removeLoan(final String nameG) {
         Game g = gAccess.get(nameG);
-        if (g != null) {
-            g.endLoan();
+        if (g == null) {
+            return;
+        }
+        if (g.endLoan()) {
+            System.out.println("The return of the game "+ nameG + " is a success.");
+        } 
+        else {
+            System.out.println("The return of the game "+ nameG + " fails.");
         }
     }
 
@@ -80,7 +102,7 @@ public class LibraryApp {
         boolean quit = false;
         do {
             displayMenu();
-            int choice = arrUserNumericInput(0, menuItems.size() - 1,
+            int choice = userNumericInput(0, menuItems.size() - 1,
                 "Choose an action");
             quit = performAction(choice);
         } while (!quit);
@@ -101,8 +123,7 @@ public class LibraryApp {
         }
     }
 
-    private int arrUserNumericInput(final int min, final int max,
-        final String prompt) {
+    private int userNumericInput(final int min, final int max,final String prompt) {
         int input = -1;
         do {
             System.out.format("%s.%nYour choice? [%d - %d]", prompt, min, max);
@@ -112,7 +133,7 @@ public class LibraryApp {
         return input;
     }
 
-    private String arrUserStringInput(final String prompt) {
+    private String userStringInput(final String prompt) {
         String input;
         do {
             System.out.format("Please enter %s:", prompt);
@@ -143,8 +164,7 @@ public class LibraryApp {
     }
 
 
-
-    private ArrayList<String> searchBoardGameByName(final String partName) {
+    private ArrayList<String> searchGameByName(final String partName) {
         Set<String> games = gAccess.keySet();
         ArrayList<String> gameNames = new ArrayList<>();
         for (String game : games) {
@@ -163,18 +183,21 @@ public class LibraryApp {
                 displayAllGames();
                 break;
             case 2:
-                performGameEntry();
+                displayAllMembers();
                 break;
             case TROIS:
-                performMemberEntry();
-                break;
-            case QUATRE:
-                performGameLoan();
-                break;
-            case CINQ:
                 displayAllLoans();
                 break;
+            case QUATRE:
+                performGameEntry();
+                break;
+            case CINQ:
+                performMemberEntry();
+                break;
             case SIX:
+                performGameLoan();
+                break;
+            case SEVEN:
                 performGameReturn();
                 break;
             default:
@@ -184,49 +207,86 @@ public class LibraryApp {
     }
 
     private void performMemberEntry() {
-        String name = arrUserStringInput("the name of the new member");
+        String name = userStringInput("the name of the new member");
         addMember(name);
     }
 
 
     private void performGameEntry() {
-        String name = arrUserStringInput("the name of a new Game");
+        String name = userStringInput("the name of a new Game");
         addGame(name);
     }
 
     private void performGameLoan() {
-        String partName = arrUserStringInput("part of the name of the member");
+        String partName = userStringInput("part of the name of the member");
         ArrayList<String> members = searchMemberByName(partName);
         if (members.isEmpty()) {
+            System.out.println("No member has a name containing "+ partName + ".");
             return;
         }
         int memberNumber = 0;
         if (members.size() > 1) {
             displayList(members);
-            memberNumber = arrUserNumericInput(0, members.size() - 1,
+            memberNumber = userNumericInput(0, members.size() - 1,
                 "Which member?");
         }
         String member = members.get(memberNumber);
-        partName = arrUserStringInput("part of the name of the game");
-        ArrayList<String> games = searchBoardGameByName(partName);
+        partName = userStringInput("part of the name of the game");
+        ArrayList<String> games = searchGameByName(partName);
         if (games.isEmpty()) {
+            System.out.println("No game has a name containing "+ partName + ".");
             return;
         }
         int gameNumber = 0;
         if (games.size() > 1) {
             displayList(games);
-            gameNumber = arrUserNumericInput(0, games.size() - 1,
+            gameNumber = userNumericInput(0, games.size() - 1,
             "Which game?");
         }
         String game = games.get(gameNumber);
-        Member m = mAccess.get(member);
-        Game g = gAccess.get(game);
-        g.borrow(m);
-        displayAllLoans();
+        addBorrowGame(member, game);
+    }
+
+    private void performGameReturn() {
+        String partName = userStringInput("part of the name of the game");
+        ArrayList<String> games = searchGameByName(partName);
+        if (games.isEmpty()) {
+            System.out.println("No game has a name containing "+ partName + ".");
+            return;
+        }
+        int gameNumber = 0;
+        if (games.size() > 1) {
+            displayList(games);
+            gameNumber = userNumericInput(0, games.size() - 1,
+            "Which game?");
+        }
+        String game = games.get(gameNumber);
+        removeLoan(game);
+    }
+
+    private void displayAllGames() {
+        ArrayList<String> lg = new ArrayList<>();
+        System.out.println("Beginning of display all games : ");
+        for (String st : gAccess.keySet()) {
+            lg.add(gAccess.get(st).toString());
+        }
+        displayList(lg);
+        System.out.println("End of display all games.");
+    }
+
+    private void displayAllMembers() {
+        ArrayList<String> lm = new ArrayList<>();
+        System.out.println("Beginning of display all members : ");
+        for (String st : mAccess.keySet()) {
+            lm.add(mAccess.get(st).toString());
+        }
+        displayList(lm);
+        System.out.println("End of display all members.");
     }
 
     private void displayAllLoans() {
         ArrayList<String> ll = new ArrayList<>();
+        System.out.println("Beginning of display all Loans : ");
         Loan l;
         for (String st : gAccess.keySet()) {
             l = gAccess.get(st).getLoan();
@@ -235,30 +295,7 @@ public class LibraryApp {
             }
         }
         displayList(ll);
+        System.out.println("End of display all loans.");
     }
 
-    private void performGameReturn() {
-        String partName = arrUserStringInput("part of the name of the game");
-        ArrayList<String> games = searchBoardGameByName(partName);
-        if (games.isEmpty()) {
-            return;
-        }
-        int gameNumber = 0;
-        if (games.size() > 1) {
-            displayList(games);
-            gameNumber = arrUserNumericInput(0, games.size() - 1,
-            "Which game?");
-        }
-        String game = games.get(gameNumber);
-        Game g = gAccess.get(game);
-        g.endLoan();
-    }
-
-    private void displayAllGames() {
-        ArrayList<String> lg = new ArrayList<>();
-        for (String st : gAccess.keySet()) {
-            lg.add(gAccess.get(st).toString());
-        }
-        displayList(lg);
-    }
 }
