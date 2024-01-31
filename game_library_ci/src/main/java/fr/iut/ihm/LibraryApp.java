@@ -12,7 +12,7 @@ import java.util.Set;
 
 /**
  *
- * @author mery_labri
+ * @author  Bruno Méry modified by Colette Johnen
  */
 public class LibraryApp {
     /**   */

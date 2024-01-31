@@ -3,7 +3,7 @@ import java.util.Date;
 
 /**
  * record the current load of games by a member.
- *
+ * @author Colette Johnen
  */
 public class Loan {
     /**   */

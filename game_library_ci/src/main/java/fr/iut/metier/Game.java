@@ -2,7 +2,7 @@ package fr.iut.metier;
 
 /**
  *
- * @author cjohnen
+ * @author Colette Johnen
  */
 public class Game {
     /**

@@ -6,6 +6,8 @@ import java.util.List;
 
 /**
  * member of library ; he/she may borrow game.
+ *
+ * @author  Colette Johnen
  */
 public class Member {
     /**

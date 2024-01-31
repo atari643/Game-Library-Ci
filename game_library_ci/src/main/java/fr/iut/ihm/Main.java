@@ -2,7 +2,7 @@ package fr.iut.ihm;
 
 
 /**
- *
+ * @author  Bruno Méry modified by Colette Johnen
  */
 public final class Main {
 

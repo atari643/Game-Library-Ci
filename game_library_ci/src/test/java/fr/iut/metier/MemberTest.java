@@ -4,7 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
-/** */
+/**
+ *
+  * @author  Colette Johnen
+*/
 public class MemberTest {
     /** */
     @Test
