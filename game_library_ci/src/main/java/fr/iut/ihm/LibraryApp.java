@@ -294,11 +294,11 @@ public class LibraryApp {
     private void displayAllLoans() {
         ArrayList<String> ll = new ArrayList<>();
         System.out.println("Beginning of display all Loans : ");
-        Loan l;
+        String l ; //loan
         for (String st : gAccess.keySet()) {
             l = gAccess.get(st).getLoan();
-            if (l != null) {
-                ll.add(l.toString());
+            if (l != "") {
+                ll.add(l);
             }
         }
         displayList(ll);

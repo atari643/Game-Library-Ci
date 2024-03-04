@@ -24,8 +24,8 @@ public class Game implements IGame{
     /**
      * @return the Loan object if the game is borrowed.
     */
-    public Loan getLoan() {
-        return myLoan;
+    public String getLoan() {
+        return myLoan.toString();
     }
 
     /**
