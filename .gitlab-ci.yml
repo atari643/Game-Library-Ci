@@ -16,7 +16,10 @@ test:
   stage: test
   script:
     - mvn test
-
+  artifacts:
+    paths:
+      - game_library_ci/target/site/jacoco/index.html
+     
 package:
   stage: package
   script:
