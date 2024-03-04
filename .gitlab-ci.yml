@@ -5,6 +5,9 @@ stages:
   - doc
   - check
 
+
+before_script:
+  - cd game_library_ci 
 build:
   stage: build
   script:
