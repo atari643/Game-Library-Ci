@@ -17,8 +17,12 @@ test:
   script:
     - mvn test
   artifacts:
+    when: always
     paths:
       - game_library_ci/target/site/jacoco/index.html
+      - rspec.xml
+    reports:
+      junit: rspec.xml
      
 package:
   stage: package
