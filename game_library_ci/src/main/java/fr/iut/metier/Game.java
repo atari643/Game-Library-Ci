@@ -33,7 +33,7 @@ public class Game implements IGame{
      * @param member member that borrows the game.
      * @return true if the borrowing has been done.
      */
-    public final boolean borrow(final Member member) {
+    public final boolean borrow(final IMember member) {
         if (myLoan != null) {
             return false;
         }
@@ -75,4 +75,5 @@ public class Game implements IGame{
         stringBuilder.append(name);
         return stringBuilder.toString();
     }
+
 }

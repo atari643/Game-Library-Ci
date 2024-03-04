@@ -1,9 +1,8 @@
 package fr.iut.metier;
 
 public interface IGame {
-    public Loan getLoan();
-    public boolean borrow(Member member);
+    public String getLoan();
+    public boolean borrow(IMember member);
     public boolean endLoan();
-
     
 }
