@@ -74,13 +74,8 @@ public class LibraryApp {
     }
 
     final void addBorrowGame(final String nameM, final String nameG) {
-<<<<<<< game_library_ci/src/main/java/fr/iut/ihm/LibraryApp.java
-        Game g = gAccess.get(nameG);
-        IMember m = mAccess.get(nameM);
-=======
         IGame g = gAccess.get(nameG);
         IMember m = mAccess.get(nameM);
->>>>>>> game_library_ci/src/main/java/fr/iut/ihm/LibraryApp.java
         if ((g == null) || (m == null)) {
             return;
         }

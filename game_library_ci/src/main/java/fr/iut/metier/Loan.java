@@ -7,9 +7,9 @@ import java.util.Date;
  */
 public class Loan {
     /**   */
-    private final Game borrowedGame;
+    private final IGame borrowedGame;
     /**   */
-    private final Member borrower;
+    private final IMember borrower;
     /**  */
     private final Date borrowedOn;
    /**
@@ -17,7 +17,7 @@ public class Loan {
     * @param game
     * @param member
     */
-    Loan(final Game game, final Member member) {
+    Loan(final IGame game, final IMember member) {
         borrowedGame = game;
         borrower = member; borrowedOn = new Date();
     }
@@ -31,11 +31,11 @@ public class Loan {
         return (int) ((now - borrowedOn.getTime()) / milli);
     }
 
-    final Member getBorrower() {
+    final IMember getBorrower() {
         return borrower;
     }
 
-    final Game getBorrowedGame() {
+    final IGame getBorrowedGame() {
         return borrowedGame;
     }
 
