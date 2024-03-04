@@ -1,13 +1,34 @@
 stages:
   - build
   - test
+  - package
+  - doc
+  - check
 
+
+before_script:
+  - cd game_library_ci 
 build:
   stage: build
   script:
-    - make build 
+    - mvn clean install
 
 test:
   stage: test
   script:
-    - tthor/test 
+    - mvn test
+
+package:
+  stage: package
+  script:
+    - mvn package
+
+doc:
+  stage: doc
+  script:
+    - mvn javadoc:javadoc
+
+check:
+  stage: check
+  script:
+    - mvn checkstyle:check

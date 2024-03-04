@@ -1,6 +1,7 @@
 package fr.iut.ihm;
 
 import fr.iut.metier.Game;
+import fr.iut.metier.IGame;
 import fr.iut.metier.Loan;
 import fr.iut.metier.IMember;
 import fr.iut.metier.Member;
@@ -17,7 +18,7 @@ import java.util.Set;
  */
 public class LibraryApp {
     /**   */
-    private Map<String, Game> gAccess;
+    private Map<String, IGame> gAccess;
     /**  */
     private Map<String, IMember> mAccess;
    /**  */
@@ -53,7 +54,7 @@ public class LibraryApp {
     }
 
     final void addGame(final String name) {
-        Game g = gAccess.get(name);
+        IGame g = gAccess.get(name);
         if (g == null) {
             gAccess.put(name, new Game(name));
         }
@@ -73,8 +74,13 @@ public class LibraryApp {
     }
 
     final void addBorrowGame(final String nameM, final String nameG) {
+<<<<<<< game_library_ci/src/main/java/fr/iut/ihm/LibraryApp.java
         Game g = gAccess.get(nameG);
         IMember m = mAccess.get(nameM);
+=======
+        IGame g = gAccess.get(nameG);
+        IMember m = mAccess.get(nameM);
+>>>>>>> game_library_ci/src/main/java/fr/iut/ihm/LibraryApp.java
         if ((g == null) || (m == null)) {
             return;
         }
@@ -87,7 +93,7 @@ public class LibraryApp {
     }
 
     final void removeLoan(final String nameG) {
-        Game g = gAccess.get(nameG);
+        IGame g = gAccess.get(nameG);
         if (g == null) {
             return;
         }
