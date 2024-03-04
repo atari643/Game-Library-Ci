@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author  Colette Johnen
  */
-public class Member {
+public class Member implements IMember{
     /**
      *
      */
@@ -39,14 +39,14 @@ public class Member {
  * @param l new loan to add at the list of current loans.
  */
 
-    void addLoan(final Loan l) {
+    public void addLoan(final Loan l) {
         myLoans.add(l);
     }
 /**
  *
  * @param l loan that is terminated.
  */
-    void stopLoan(final Loan l) {
+    public void stopLoan(final Loan l) {
         myLoans.remove(l);
     }
 

@@ -3,6 +3,7 @@ package fr.iut.ihm;
 import fr.iut.metier.Game;
 import fr.iut.metier.IGame;
 import fr.iut.metier.Loan;
+import fr.iut.metier.IMember;
 import fr.iut.metier.Member;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class LibraryApp {
     /**   */
     private Map<String, IGame> gAccess;
     /**  */
-    private Map<String, Member> mAccess;
+    private Map<String, IMember> mAccess;
    /**  */
     private Scanner scan;
     /** */
@@ -44,7 +45,7 @@ public class LibraryApp {
         menuItems = new ArrayList<>();
         menuItems.add("Quit");
         menuItems.add("List all games in the library");
-        menuItems.add("List all members of the library");
+        menuItems.add("List all IMenbers of the library");
         menuItems.add("List all loans");
         menuItems.add("Add new  game");
         menuItems.add("Add new member");
@@ -63,7 +64,7 @@ public class LibraryApp {
     }
 
     final void addMember(final String name) {
-        Member m = mAccess.get(name);
+        IMember m = mAccess.get(name);
         if (m == null) {
             mAccess.put(name, new Member(name));
         }
@@ -73,8 +74,13 @@ public class LibraryApp {
     }
 
     final void addBorrowGame(final String nameM, final String nameG) {
+<<<<<<< game_library_ci/src/main/java/fr/iut/ihm/LibraryApp.java
+        Game g = gAccess.get(nameG);
+        IMember m = mAccess.get(nameM);
+=======
         IGame g = gAccess.get(nameG);
-        Member m = mAccess.get(nameM);
+        IMember m = mAccess.get(nameM);
+>>>>>>> game_library_ci/src/main/java/fr/iut/ihm/LibraryApp.java
         if ((g == null) || (m == null)) {
             return;
         }
