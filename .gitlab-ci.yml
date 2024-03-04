@@ -8,24 +8,24 @@ stages:
 build:
   stage: build
   script:
-    - make build 
+    - mvn clean install
 
 test:
   stage: test
   script:
-    - tthor/test 
+    - mvn test
 
 package:
   stage: package
   script:
-    - make package
+    - mvn package
 
 doc:
   stage: doc
   script:
-    - make doc
+    - mvn javadoc:javadoc
 
 check:
   stage: check
   script:
-    - make check
+    - mvn checkstyle:check
