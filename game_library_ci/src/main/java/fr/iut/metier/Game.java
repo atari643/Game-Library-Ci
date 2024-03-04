@@ -4,7 +4,7 @@ package fr.iut.metier;
  *
  * @author Colette Johnen
  */
-public class Game {
+public class Game implements IGame{
     /**
      *
      */

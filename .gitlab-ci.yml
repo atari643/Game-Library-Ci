@@ -1,6 +1,9 @@
 stages:
   - build
   - test
+  - package
+  - doc
+  - check
 
 build:
   stage: build
@@ -11,3 +14,18 @@ test:
   stage: test
   script:
     - tthor/test 
+
+package:
+  stage: package
+  script:
+    - make package
+
+doc:
+  stage: doc
+  script:
+    - make doc
+
+check:
+  stage: check
+  script:
+    - make check
